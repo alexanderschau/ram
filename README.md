@@ -16,3 +16,11 @@ An example script (`example.ram`):
 - number (e.g. `123`)
 - string (e.g. `"hello world"`)
 - group (e.g. `(`, `)`)
+
+## Parser
+
+### AST Types
+
+- NumberLiteral
+- StringLiteral
+- CallExpression
