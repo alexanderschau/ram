@@ -1,18 +1,16 @@
 mod generator;
 mod parser;
 mod tokenizer;
+use std::io;
+use std::io::prelude::*;
 
-fn main() {
-    let example_script = "📣 \"hello world\" \" lol \"
-    📣 (➕ 3 5 )
-    📣 \"from 🐏!\"";
-
-    println!("🐏 Ram Compiler");
-
-    let tokens = tokenizer::run(&example_script);
-    println!("{:?}", tokens);
+fn main() -> io::Result<()> {
+    let mut buffer = String::new();
+    io::stdin().read_to_string(&mut buffer)?;
+    
+    let tokens = tokenizer::run(&buffer);
     let ast = parser::run(&tokens);
-    println!("{:?}", ast);
     let code = generator::rust::gen(&ast);
     println!("{}", code);
+    Ok(())
 }
