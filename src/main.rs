@@ -8,5 +8,7 @@ fn main() {
   println!("🐏 Ram Compiler");
 
   let tokens = tokenizer::run(&example_script);
-  parser::run(&tokens);
+  println!("Tokens: {:?}", tokens);
+  let ast = parser::run(&tokens);
+  println!("AST: {:?}", ast);
 }

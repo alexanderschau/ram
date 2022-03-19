@@ -2,8 +2,8 @@ use regex::Regex;
 
 #[derive(Debug)]
 pub struct Token {
-  token_type: String,
-  value: String,
+  pub token_type: String,
+  pub value: String,
 }
 
 pub fn run(script: &str) -> Vec<Token> {
