@@ -1,3 +1,4 @@
+mod generator;
 mod parser;
 mod tokenizer;
 
@@ -11,4 +12,7 @@ fn main() {
   println!("Tokens: {:?}", tokens);
   let ast = parser::run(&tokens);
   println!("AST: {:?}", ast);
+
+  let code = generator::rust::gen(&ast);
+  println!("Code: {}", code);
 }
