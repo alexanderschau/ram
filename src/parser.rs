@@ -44,11 +44,12 @@ impl ProgramBuilder<'_> {
       // get all parameters
       current += 1;
       while current < self.tokens.len() {
-        let (sub_node, sub_current) = self.walk(&current);
-        if let Node::CallExpression(_) = sub_node {
+        let token = &self.tokens[current];
+        if token.token_type == "name" || (token.token_type == "group" && token.value == ")") {
           current -= 1;
           break;
         }
+        let (sub_node, sub_current) = self.walk(&current);
         node.params.push(sub_node);
         current = sub_current;
 
@@ -58,7 +59,16 @@ impl ProgramBuilder<'_> {
       return (Node::CallExpression(node), current);
     }
 
-    (Node::StringLiteral(String::from("asd")), current)
+    if token.token_type == "group" && token.value == "(" {
+      // get all parameters
+      current += 1;
+      let sub = self.walk(&current);
+      current = sub.1 + 1;
+
+      return (sub.0, current);
+    }
+
+    (Node::StringLiteral(String::from("empty")), current)
   }
 }
 

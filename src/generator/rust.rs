@@ -3,10 +3,10 @@ use crate::parser::{Node, Program};
 pub fn gen(ast: &Program) -> String {
   let (funcs, code) = convert_branch(&ast.body);
 
-  format!("fn main(){{{}}} {}", code, funcs.join(" "))
+  format!("fn main(){{{}}} {}", code.join(" "), funcs.join(" "))
 }
 
-fn convert_branch(nodes: &Vec<Node>) -> (Vec<String>, String) {
+fn convert_branch(nodes: &Vec<Node>) -> (Vec<String>, Vec<String>) {
   let mut functions: Vec<String> = Vec::new();
   let mut main_loop: Vec<String> = Vec::new();
 
@@ -21,7 +21,16 @@ fn convert_branch(nodes: &Vec<Node>) -> (Vec<String>, String) {
         "📣" => {
           let (i_func, i_main) = convert_branch(&call.params);
           functions.extend(i_func);
-          format!("println!({});", i_main)
+          format!(
+            "println!(\"{}\", {});",
+            "{}".repeat(call.params.len()),
+            i_main.join(", ")
+          )
+        }
+        "➕" => {
+          let (i_func, i_main) = convert_branch(&call.params);
+          functions.extend(i_func);
+          format!("{}", i_main.join(" + "))
         }
         &_ => "".to_string(),
       },
@@ -31,5 +40,5 @@ fn convert_branch(nodes: &Vec<Node>) -> (Vec<String>, String) {
     current += 1;
   }
 
-  (functions, main_loop.join(" "))
+  (functions, main_loop)
 }
