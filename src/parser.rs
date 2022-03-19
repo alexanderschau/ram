@@ -1,18 +1,26 @@
 use crate::tokenizer;
 
-struct CallExpressionNode {
+pub struct CallExpressionNode {
   name: String,
-  params: Vec<String>,
+  params: Vec<Node>,
 }
 
-enum Node {
+pub enum Node {
   NumberLiteral(String),
   StringLiteral(String),
   CallExpression(CallExpressionNode),
 }
 
-pub fn run(tokens: &Vec<tokenizer::Token>) {
+pub struct Program {
+  body: Vec<Node>
+}
+
+pub fn run(tokens: &Vec<tokenizer::Token>) -> Program {
   let mut current = 0;
+
+  let mut program = Program{
+    body: Vec::new()
+  };
 
   fn walk() {}
 
@@ -20,5 +28,7 @@ pub fn run(tokens: &Vec<tokenizer::Token>) {
     println!("{:?}", tokens[current]);
 
     current += 1;
-  }
+  };
+
+  program
 }
