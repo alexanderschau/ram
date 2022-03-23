@@ -45,7 +45,7 @@ pub unsafe fn compile(ptr: *mut u8) -> *mut c_char {
 
     let tokens = tokenizer::run(data);
     let ast = parser::run(&tokens);
-    let code = generator::rust::gen(&ast);
+    let code = generator::javascript::gen(&ast);
     let s = format!("{}", code);
     let s = CString::new(s).unwrap();
 
