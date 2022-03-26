@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "compiler",
+			"name": "🧰 Compiler"
+		},
+		{
+			"path": "deno",
+			"name": "🦕 Deno WASM Integration"
+		},
+		{
+			"path": "site",
+			"name": "🎨 Website"
+		},
+		{
+			"path": ".",
+			"name": "📚 Root"
+		}
+	],
+	"settings": {
+		"deno.suggest.imports.hosts": {
+			"https://deno.land": false
+		},
+	},
+	"extensions": {
+		"recommendations": []
+	}
+}

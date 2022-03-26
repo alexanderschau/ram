@@ -1,0 +1,22 @@
+---
+import "../styles/global.css";
+import REPL from "../components/repl.svelte";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Astro</title>
+  </head>
+  <body class="text-text font-lato max-w-lg mx-auto px-2 py-12">
+    <div class="my-8">
+      <h1 class="text-4xl text-center font-bold">_RAM</h1>
+      <div class="text-center text-primary">
+        The emoji based programming language
+      </div>
+    </div>
+    <div>Here a lot of text fits perfectly...</div>
+    <REPL client:load />
+  </body>
+</html>
