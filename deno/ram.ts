@@ -29,7 +29,7 @@ function copyCStr(wasmMemory: WebAssembly.Memory, ptr: number) {
 // end helpers
 
 const wasmCode = await Deno.readFile(
-  "/home/vscode/lang/target/wasm32-unknown-unknown/debug/ram.wasm",
+  "../compiler/target/wasm32-unknown-unknown/release/ram.wasm",
 );
 
 const wasmModule = new WebAssembly.Module(wasmCode);
