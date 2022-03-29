@@ -16,7 +16,52 @@ import REPL from "../components/repl.svelte";
         The emoji based programming language
       </div>
     </div>
-    <div>Here a lot of text fits perfectly...</div>
-    <REPL client:load />
+    <div>
+      <span class="text-primary">RAM</span> is the language that will <span
+        class="text-primary">change the way you code</span
+      >. Instead of using lots of boring words just use some nice emojis 😎.
+    </div>
+    <div class="text-xl font-bold my-3">Why you should use RAM</div>
+    <div>
+      RAM is easy to carry...
+      <img
+        class="w-full"
+        alt="a nice GIF"
+        src="https://media0.giphy.com/media/BzBKqA7pRykwmMzrSN/giphy.gif"
+      />
+      ... easily extendable...
+      <img
+        class="w-full"
+        alt="a nice GIF"
+        src="https://media0.giphy.com/media/XOQgqhhEV2wSI/giphy.gif"
+      />
+      ... battle tested ...
+      <img
+        class="w-full"
+        alt="a nice GIF"
+        src="https://media4.giphy.com/media/5B4Dl7V8cFaYo/giphy.gif"
+      />
+      ... integrated with aggressive type checking ...
+      <img
+        class="w-full"
+        alt="a nice GIF"
+        src="https://media0.giphy.com/media/WmbNwhHZFpqxO/giphy.gif"
+      />
+      ... nice to your children.
+      <img
+        class="w-full"
+        alt="a nice GIF"
+        src="https://media0.giphy.com/media/hoFE3QyBSUGZi/giphy.gif"
+      />
+    </div>
+    <div class="text-xl font-bold my-3">REPL</div>
+    <REPL client:only />
+    <div class="text-center text-text text-opacity-70 italic">
+      Quality since 2022 by <a
+        target="_blank"
+        href="https://alexander.sbs"
+        class="underline underline-offset-2">Alexander Schau</a
+      >
+    </div>
   </body>
 </html>
