@@ -85,11 +85,17 @@ pub fn run(script: &str) -> Vec<Token> {
         if next_char == '"' {
             let mut value = String::new().to_owned();
 
-            while let Some(next_char) = chars.next() {
-                if next_char == '"' {
+            loop {
+                if chars.next().unwrap() == '"' {
                     break;
                 }
+
+                let next_char = chars.next().unwrap();
                 value.push_str(&String::from(next_char));
+                if next_char == '\\' && chars.peek().unwrap() == &'"' {
+                    chars.next();
+                    value.push_str(&String::from("\""));
+                }
             }
 
             tokens.push(Token {

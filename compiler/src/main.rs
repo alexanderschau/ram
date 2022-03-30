@@ -13,7 +13,7 @@ fn main() -> io::Result<()> {
     io::stdin().read_to_string(&mut buffer)?;
     let tokens = tokenizer::run(&buffer);
     let ast = parser::run(&tokens);
-    let code = generator::rust::gen(&ast);
+    let code = generator::javascript::gen(&ast);
     println!("{}", code);
     Ok(())
 }
