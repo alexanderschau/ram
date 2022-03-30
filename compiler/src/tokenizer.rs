@@ -7,7 +7,7 @@ pub struct Token {
 }
 
 pub fn run(script: &str) -> Vec<Token> {
-    let mut chars = script.chars();
+    let mut chars = script.chars().peekable();
 
     let mut tokens: Vec<Token> = Vec::new();
 
@@ -65,12 +65,13 @@ pub fn run(script: &str) -> Vec<Token> {
         if next_char.is_numeric() {
             let mut value = String::from(next_char).to_owned();
 
-            while let Some(next_char) = chars.next() {
-                if next_char.is_numeric() {
-                    value.push_str(&String::from(next_char));
-                    continue;
+            loop {
+                if !chars.peek().unwrap().is_numeric() {
+                    break;
                 }
-                break;
+
+                let next_char = chars.next().unwrap();
+                value.push_str(&String::from(next_char));
             }
 
             tokens.push(Token {
