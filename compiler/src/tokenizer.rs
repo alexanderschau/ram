@@ -86,11 +86,12 @@ pub fn run(script: &str) -> Vec<Token> {
             let mut value = String::new().to_owned();
 
             loop {
-                if chars.next().unwrap() == '"' {
+                let next_char = chars.next().unwrap();
+
+                if next_char == '"' {
                     break;
                 }
 
-                let next_char = chars.next().unwrap();
                 value.push_str(&String::from(next_char));
                 if next_char == '\\' && chars.peek().unwrap() == &'"' {
                     chars.next();
