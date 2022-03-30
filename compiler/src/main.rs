@@ -1,6 +1,7 @@
 mod generator;
 mod parser;
 mod tokenizer;
+use std::env;
 use std::ffi::{CStr, CString};
 use std::io;
 use std::io::prelude::*;
@@ -9,11 +10,21 @@ use std::os::raw::c_char;
 use std::os::raw::c_void;
 
 fn main() -> io::Result<()> {
+    let mut args = env::args();
+    let mut result_lang = String::from("rust");
+    if args.len() >= 2 {
+        let res = args.nth(1).unwrap();
+        result_lang = res;
+    }
     let mut buffer = String::new();
     io::stdin().read_to_string(&mut buffer)?;
     let tokens = tokenizer::run(&buffer);
     let ast = parser::run(&tokens);
-    let code = generator::javascript::gen(&ast);
+    //let mut code = String::new();
+    let code = match result_lang.as_str() {
+        "js" => generator::javascript::gen(&ast),
+        _ => generator::rust::gen(&ast),
+    };
     println!("{}", code);
     Ok(())
 }
