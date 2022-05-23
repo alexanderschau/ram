@@ -1,25 +1,35 @@
-import { compile } from "./ram.ts";
+import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
+import init, {build as ramCompile} from "https://cloudshare.download/ram-lang/compiler/0.1.0/wasm.js"
 
-const runRustPlayground = async (code: string) => {
-  const resp = await fetch("https://play.rust-lang.org/execute", {
-    method: "post",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      channel: "stable",
-      mode: "debug",
-      edition: "2021",
-      crateType: "bin",
-      tests: false,
-      code: code,
-      backtrace: false,
-    }),
+await init()
+
+serve(async (req) => {
+  const url = new URL(req.url);
+
+  if (url.pathname !== "/run") {
+    return new Response("", { status: 404 });
+  }
+
+  const inputCode = ramCompile(url.searchParams.get("code") || "");
+
+  const p = Deno.run({
+    cmd: [
+      "deno",
+      "run",
+      "./run.ts",
+    ],
+    stdin: "piped",
+    stdout: "piped",
   });
-  return await resp.json();
-};
+  p.stdin.write(new TextEncoder().encode(inputCode));
+  p.stdin.close();
+  const { success } = await p.status();
+  if (!success) {
+    return new Response("", { status: 500 });
+  }
+  const rawOutput = await p.output();
 
-//console.log(await runRustPlayground(compile('📣 "hello world from ram over wasm 🐏!"')));
-const compiled = compile('📣 "hello world from ram over wasm 🐏!" (➕ 4 5)');
-console.log(compiled);
-eval(compiled);
+  const resp = new TextDecoder().decode(rawOutput);
+
+  return new Response(resp);
+});

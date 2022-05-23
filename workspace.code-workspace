@@ -5,6 +5,10 @@
 			"name": "🧰 Compiler"
 		},
 		{
+			"path": "wasm",
+			"name": "⚙️ WASM"
+		},
+		{
 			"path": "deno",
 			"name": "🦕 Deno WASM Integration"
 		},
