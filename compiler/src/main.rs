@@ -11,7 +11,7 @@ use std::os::raw::c_void;
 
 fn main() -> io::Result<()> {
     let mut args = env::args();
-    let mut result_lang = String::from("rust");
+    let mut result_lang = String::from("js");
     if args.len() >= 2 {
         let res = args.nth(1).unwrap();
         result_lang = res;
@@ -19,7 +19,9 @@ fn main() -> io::Result<()> {
     let mut buffer = String::new();
     io::stdin().read_to_string(&mut buffer)?;
     let tokens = tokenizer::run(&buffer);
+    println!("{:?}", tokens);
     let ast = parser::run(&tokens);
+    println!("{:?}", ast);
     //let mut code = String::new();
     let code = match result_lang.as_str() {
         "js" => generator::javascript::gen(&ast),

@@ -7,9 +7,16 @@ pub struct CallExpressionNode {
 }
 
 #[derive(Debug)]
+pub struct VariableStoreNode {
+    pub key: String,
+    pub value: String,
+}
+
+#[derive(Debug)]
 pub enum Node {
     NumberLiteral(String),
     StringLiteral(String),
+    Variable(String),
     CallExpression(CallExpressionNode),
 }
 
@@ -29,6 +36,10 @@ impl ProgramBuilder<'_> {
 
         if token.token_type == "string" {
             return (Node::StringLiteral(token.value.clone()), current);
+        }
+
+        if token.token_type == "variable" {
+            return (Node::Variable(token.value.clone()), current);
         }
 
         if token.token_type == "number" {
@@ -55,6 +66,14 @@ impl ProgramBuilder<'_> {
                 current = sub_current;
 
                 current += 1;
+            }
+
+            // if variable storage only use one parameter
+            if node.name == "💾" && !matches!(node.params[0], Node::StringLiteral(_)) {
+                panic!("variable name no string");
+            }
+            if node.name == "💾" && node.params.len() > 2 {
+                node.params.truncate(2);
             }
 
             return (Node::CallExpression(node), current);

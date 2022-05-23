@@ -66,7 +66,11 @@ pub fn run(script: &str) -> Vec<Token> {
             let mut value = String::from(next_char).to_owned();
 
             loop {
-                if !chars.peek().unwrap().is_numeric() {
+                let pk = chars.peek();
+                if pk.is_none() {
+                    break;
+                }
+                if !pk.unwrap().is_numeric() {
                     break;
                 }
 

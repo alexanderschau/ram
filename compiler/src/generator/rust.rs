@@ -34,6 +34,7 @@ fn convert_branch(nodes: &Vec<Node>) -> (Vec<String>, Vec<String>) {
                 }
                 &_ => "".to_string(),
             },
+            _ => String::new(),
         };
         main_loop.push(code);
 
