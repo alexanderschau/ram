@@ -23,4 +23,19 @@ An example script (`example.ram`):
 
 - NumberLiteral
 - StringLiteral
+- VariableStore
 - CallExpression
+
+## Predefined
+
+### Functions
+
+- ➕
+- ➖
+- ✖️
+- ➗
+
+### Keywords
+
+- 📣
+- 💾

@@ -38,11 +38,25 @@ fn convert_branch(nodes: &Vec<Node>) -> (Vec<String>, Vec<String>) {
                 "➕" => {
                     let (i_func, i_main) = convert_branch(&call.params);
                     functions.extend(i_func);
-                    format!("{}", i_main.join(" + "))
+                    format!("({})", i_main.join(" + "))
+                }
+                "➖" => {
+                    let (i_func, i_main) = convert_branch(&call.params);
+                    functions.extend(i_func);
+                    format!("({})", i_main.join(" - "))
+                }
+                "✖️" => {
+                    let (i_func, i_main) = convert_branch(&call.params);
+                    functions.extend(i_func);
+                    format!("({})", i_main.join(" * "))
+                }
+                "➗" => {
+                    let (i_func, i_main) = convert_branch(&call.params);
+                    functions.extend(i_func);
+                    format!("({})", i_main.join(" / "))
                 }
                 &_ => "".to_string(),
-            },
-            _ => String::new(),
+            }
         };
         main_loop.push(code);
 

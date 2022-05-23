@@ -30,7 +30,7 @@ pub fn run(script: &str) -> Vec<Token> {
         }
 
         // name
-        if "📣🕹️📥📤💾➕".contains(next_char) {
+        if "📣🕹️📥📤💾➕➖✖️➗".contains(next_char) {
             tokens.push(Token {
                 token_type: String::from("name"),
                 value: String::from(next_char),
