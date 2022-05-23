@@ -1,6 +1,4 @@
 ---
-import "../styles/global.css";
-import REPL from "../components/repl.svelte";
 ---
 
 <html lang="en">
@@ -9,59 +7,7 @@ import REPL from "../components/repl.svelte";
     <meta name="viewport" content="width=device-width" />
     <title>Astro</title>
   </head>
-  <body class="text-text font-lato max-w-lg mx-auto px-2 py-12">
-    <div class="my-8">
-      <h1 class="text-4xl text-center font-bold">_RAM</h1>
-      <div class="text-center text-primary">
-        The emoji based programming language
-      </div>
-    </div>
-    <div>
-      <span class="text-primary">RAM</span> is the language that will <span
-        class="text-primary">change the way you code</span
-      >. Instead of using lots of boring words just use some nice emojis 😎.
-    </div>
-    <div class="text-xl font-bold my-3">Why you should use RAM</div>
-    <div>
-      RAM is easy to carry...
-      <img
-        class="w-full"
-        alt="a nice GIF"
-        src="https://media0.giphy.com/media/BzBKqA7pRykwmMzrSN/giphy.gif"
-      />
-      ... easily extendable...
-      <img
-        class="w-full"
-        alt="a nice GIF"
-        src="https://media0.giphy.com/media/XOQgqhhEV2wSI/giphy.gif"
-      />
-      ... battle tested ...
-      <img
-        class="w-full"
-        alt="a nice GIF"
-        src="https://media4.giphy.com/media/5B4Dl7V8cFaYo/giphy.gif"
-      />
-      ... integrated with aggressive type checking ...
-      <img
-        class="w-full"
-        alt="a nice GIF"
-        src="https://media0.giphy.com/media/WmbNwhHZFpqxO/giphy.gif"
-      />
-      ... nice to your children.
-      <img
-        class="w-full"
-        alt="a nice GIF"
-        src="https://media0.giphy.com/media/hoFE3QyBSUGZi/giphy.gif"
-      />
-    </div>
-    <div class="text-xl font-bold my-3">REPL</div>
-    <REPL client:only />
-    <div class="text-center text-text text-opacity-70 italic">
-      Quality since 2022 by <a
-        target="_blank"
-        href="https://alexander.sbs"
-        class="underline underline-offset-2">Alexander Schau</a
-      >
-    </div>
+  <body>
+    <h1>Astro</h1>
   </body>
 </html>

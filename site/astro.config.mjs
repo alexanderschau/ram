@@ -1,7 +1,9 @@
 import { defineConfig } from "astro/config";
 
+import svelte from "@astrojs/svelte";
+import tailwind from "@astrojs/tailwind";
+
 // https://astro.build/config
 export default defineConfig({
-  // Comment out "renderers: []" to enable Astro's default component support.
-  renderers: ["@astrojs/renderer-svelte"],
+  integrations: [svelte(), tailwind()],
 });
